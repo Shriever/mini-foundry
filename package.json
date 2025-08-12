@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "scripts/with-env.sh ts-node src/main.ts",
-    "test": "scripts/with-env.sh mocha -r ts-node/register test/**/*.test.ts",
+    "test": "bash scripts/with-env.sh mocha -r ts-node/register test/**/*.test.ts",
     "migrate": "bash scripts/with-env.sh ts-node src/store/db.ts"
   },
   "devDependencies": {
