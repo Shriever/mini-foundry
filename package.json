@@ -7,8 +7,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/main.ts",
-    "test": "mocha -r ts-node/register test/**/*.test.ts"
+    "start": "scripts/with-env.sh ts-node src/main.ts",
+    "test": "scripts/with-env.sh mocha -r ts-node/register test/**/*.test.ts",
+    "migrate": "bash scripts/with-env.sh ts-node src/store/db.ts"
   },
   "devDependencies": {
     "@types/chai": "^5.2.2",
