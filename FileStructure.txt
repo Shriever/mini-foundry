@@ -1,0 +1,32 @@
+mini-foundry/
+├─ migrations/
+│  └─ 0001_core.sql                # DDL (start with catalog_* + staging_*)
+├─ config/
+│  └─ dev.env                      # DB URL, API base URL, tokens, date
+├─ data/
+│  └─ raw/
+│     └─ calls/                    # Keep downloaded CSVs for reproducibility
+├─ src/
+│  ├─ store/
+│  │  └─ db.(ts|go|py)             # Connect to Postgres, run migrations
+│  ├─ catalog/
+│  │  ├─ sources.(ts|go|py)        # Register/lookup sources
+│  │  ├─ jobs.(ts|go|py)           # Register jobs, code_hash
+│  │  └─ runs.(ts|go|py)           # createRun/updateRun, lineage helpers
+│  ├─ ingest/
+│  │  ├─ ingest_calls_csv.(ts|go|py)     # Read CSV → staging_calls_raw
+│  │  └─ ingest_weather_api.(ts|go|py)   # Call API → staging_weather_raw
+│  ├─ normalize/
+│  │  ├─ normalize_calls.(ts|go|py)      # ts/enum/neighborhood mapping → warehouse
+│  │  └─ normalize_weather.(ts|go|py)    # hour/precip/temp → warehouse
+│  ├─ transform/
+│  │  └─ join_calls_weather_v1.(ts|go|py) # warehouse → published v1
+│  ├─ api/
+│  │  └─ server.(ts|go|py)          # Minimal HTTP: ingest trigger, aggregate, lineage
+│  └─ cli/
+│     └─ mf.(ts|go|py)              # mf source add / ingest run / transform run / query
+├─ test/
+│  └─ integration_vertical_slice.(ts|go|py)  # End‑to‑end for a single date
+├─ .env.example
+├─ Makefile (or) taskfile.yml (or) package.json scripts
+└─ README.md
