@@ -1,3 +1,5 @@
+IF NOT EXISTS CREATE DATABASE mf_dev;
+
 CREATE TABLE staging_calls_raw (
     id BIGSERIAL PRIMARY KEY,
     src_key TEXT NOT NULL,

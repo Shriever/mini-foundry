@@ -22,8 +22,8 @@ export function runSql(opts: Options): Promise<void> {
     }
 
     const child = spawn('psql', args, {
-      stdio: ['pipe', 'inherit', 'inherit'], // what are these strings?
-      env: { ...process.env, ...(opts.env || {}) }, // can I implement .env without introducing security concerns?
+      stdio: ['pipe', 'inherit', 'inherit'],
+      env: { ...process.env, ...(opts.env || {}) },
       shell: false,
     });
 

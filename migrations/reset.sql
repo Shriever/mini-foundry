@@ -1,0 +1,1 @@
+DROP DATABASE mf_dev;
