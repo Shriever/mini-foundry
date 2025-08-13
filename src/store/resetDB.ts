@@ -34,7 +34,7 @@ export async function resetDb(
 
 export function parseDbName(dbUrl: string) {
   try {
-    return new URL(dbUrl).pathname;
+    return new URL(dbUrl).pathname.slice(1);
   } catch (err) {
     throw new Error(`Invalid database URL: ${dbUrl}`);
   }
