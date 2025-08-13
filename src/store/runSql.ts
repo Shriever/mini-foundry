@@ -8,6 +8,7 @@ type Options = {
   env?: Record<string, string>;
 };
 
+
 export function runSql(opts: Options): Promise<void> {
   return new Promise((resolve, reject) => {
     const args = [];
