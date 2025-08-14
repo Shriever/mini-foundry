@@ -1,15 +1,9 @@
 // Normally implemented with the 'pg' library
 import { spawn } from 'child_process';
-
-type Options = {
-  dbUrl?: string;
-  sql?: string;
-  file?: string;
-  env?: Record<string, string>;
-};
+import { runSqlOptions } from '../types/store';
 
 
-export function runSql(opts: Options): Promise<void> {
+export function runSql(opts: runSqlOptions): Promise<void> {
   return new Promise((resolve, reject) => {
     const args = [];
     if (opts.dbUrl) args.push(opts.dbUrl);

@@ -9,7 +9,7 @@ const SQL_CURRENT_DB = 'SELECT current_database();';
 
 export async function resetDb(
   runSql: runSqlFn,
-  _spawn: spawnFn,
+  spawn: spawnFn,
   processEnv: NodeJS.ProcessEnv = process.env
 ) {
   const { POSTGRES_ADMIN_URL, ALLOW_DB_RESET } = processEnv;
@@ -24,7 +24,7 @@ export async function resetDb(
 
   if (
     parseDbName(pgUrl) !== adminDb ||
-    (await queryDbName(pgUrl, _spawn)) !== adminDb
+    (await queryDbName(pgUrl, spawn)) !== adminDb
   )
     throw new Error('Reset DB only available in dev');
 
@@ -40,11 +40,11 @@ export function parseDbName(dbUrl: string) {
   }
 }
 
-export function queryDbName(dbUrl: string, _spawn: spawnFn): Promise<string> {
+export function queryDbName(dbUrl: string, spawn: spawnFn): Promise<string> {
   return new Promise((resolve, reject) => {
     let dbName: string = '';
     const args = [dbUrl, '-t', '-A'];
-    const child = _spawn('psql', args, {
+    const child = spawn('psql', args, {
       stdio: ['pipe', 'pipe', 'inherit'],
       shell: false,
     });
