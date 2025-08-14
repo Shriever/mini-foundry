@@ -9,7 +9,8 @@
   "scripts": {
     "start": "scripts/with-env.sh ts-node src/main.ts",
     "test": "bash scripts/with-env.sh mocha -r ts-node/register test/**/*.test.ts",
-    "migrate": "bash scripts/with-env.sh ts-node src/store/db.ts"
+    "migrate": "bash scripts/with-env.sh ts-node src/store/db.ts",
+    "initDb": "ts-node src/database/initDb.ts"
   },
   "devDependencies": {
     "@types/chai": "^5.2.2",
